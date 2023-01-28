@@ -2,10 +2,12 @@ package com.driver.Repository;
 
 import com.driver.Group;
 import com.driver.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
-
+@Repository
 public class WhatsappRepository {
     HashMap<String, User> userList;
     WhatsappRepository(){
