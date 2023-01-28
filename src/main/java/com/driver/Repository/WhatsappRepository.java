@@ -6,13 +6,15 @@ import com.driver.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 @Repository
 public class WhatsappRepository {
     HashMap<String, User> userList;
-    HashMap<String,Group>groupList;
+    HashMap<String,List<User>>groupList;
+   //List<Group>groupList;
     HashMap<Integer, Message>messageList;
     public WhatsappRepository(){
         userList=new HashMap<>();
@@ -41,7 +43,7 @@ public class WhatsappRepository {
         else if(size>2){
             int size1=groupList.size()+1;
              group=new Group("Group "+size1,size);
-            groupList.put(group.getName(),group);
+            groupList.put(group.getName(),users);
 
         }
         return group;
@@ -51,5 +53,20 @@ public class WhatsappRepository {
         Message m=new Message(messageList.size(),content,new Date());
         messageList.put(m.getId(),m);
         return m.getId();
+    }
+
+    public String changeAdmin(User approver, User user, Group group) throws Exception {
+        if(!groupList.containsKey(group.getName()))
+            throw new Exception("Group does not exist");
+        List<User>user1=groupList.get(group.getName());
+        if(user1.get(0).getName().equals(approver))
+            throw new Exception("Approver does not have rights");
+        if(!user1.contains(user))
+            throw new Exception("User is not a participant");
+        int n=user1.indexOf(user);
+        user1.set(n,user1.get(0));
+        user1.set(0,user);
+        return "SUCCESS";
+
     }
 }

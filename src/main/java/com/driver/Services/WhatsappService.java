@@ -33,7 +33,7 @@ public class WhatsappService {
     }
 
     public String changeAdmin(User approver, User user, Group group) {
-        return "";
+        return whatsappRepository.changeAdmin(approver, user, group);
     }
 
     public int removeUser(User user) {
