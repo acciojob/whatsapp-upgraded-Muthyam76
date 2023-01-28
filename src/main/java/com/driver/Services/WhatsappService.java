@@ -24,7 +24,8 @@ public class WhatsappService {
     }
 
     public int createMessage(String content) {
-        return 0;
+       return whatsappRepository.createMessage(content);
+
     }
 
     public int sendMessage(Message message, User sender, Group group) {
