@@ -50,7 +50,7 @@ public class WhatsappRepository {
    }
 
     public int createMessage(String content) {
-        Message m=new Message(messageList.size(),content,new Date());
+        Message m=new Message(messageList.size()+1,content,new Date());
         messageList.put(m.getId(),m);
         return m.getId();
     }
@@ -68,5 +68,19 @@ public class WhatsappRepository {
         user1.set(0,user);
         return "SUCCESS";
 
+    }
+
+    public int removeUser(User user) throws Exception {
+        for(String name : groupList.keySet()){
+            List<User>users=groupList.get(name);
+            if(users.contains(user) && users.get(0).equals(user))
+                throw new Exception("Cannot remove admin");
+            if(users.contains(user)){
+                users.remove(user);
+
+            }
+
+        }
+        return  0;
     }
 }

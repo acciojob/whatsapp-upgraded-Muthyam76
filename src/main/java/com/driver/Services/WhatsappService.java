@@ -38,5 +38,6 @@ public class WhatsappService {
 
     public int removeUser(User user) {
         return 0;
+                //whatsappRepository.removeUser(user);
     }
 }
