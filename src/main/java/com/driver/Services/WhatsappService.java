@@ -11,8 +11,8 @@ import java.util.List;
 
 @Service
 public class WhatsappService {
-    @Autowired
-    WhatsappRepository whatsappRepository;
+   // @Autowired
+    WhatsappRepository whatsappRepository=new WhatsappRepository();
     public String createUser(String name, String mobile) throws Exception {
         return whatsappRepository.addUser(name,mobile);
 

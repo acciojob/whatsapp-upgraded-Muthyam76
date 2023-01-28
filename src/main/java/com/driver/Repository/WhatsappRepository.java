@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class WhatsappRepository {
     HashMap<String, User> userList;
-    WhatsappRepository(){
+    public WhatsappRepository(){
         userList=new HashMap<>();
     }
 
