@@ -35,8 +35,13 @@ public class Message {
     }
 
     public Message(int id,String content,Date timestamp) {
-        this.timestamp = timestamp;
+        this.id=id;
         this.content=content;
         this.timestamp=timestamp;
+    }
+    public Message(int id,String content){
+        this.content=content;
+        this.id=id;
+
     }
 }
