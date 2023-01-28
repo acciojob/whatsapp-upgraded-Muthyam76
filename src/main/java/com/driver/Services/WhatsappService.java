@@ -37,8 +37,7 @@ public class WhatsappService {
         return whatsappRepository.changeAdmin(approver, user, group);
     }
 
-    public int removeUser(User user) {
-        return 0;
-                //whatsappRepository.removeUser(user);
+    public int removeUser(User user) throws Exception {
+        return whatsappRepository.removeUser(user);
     }
 }
