@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -21,10 +22,11 @@ public class Application {
 		l.add(c);
 
 		System.out.println(whatsappController.createUser("muthyam","123"));
-		System.out.println(whatsappController.createGroup(l).getName());
+		Group g=whatsappController.createGroup(l);
 		System.out.println(whatsappController.createGroup(l).getName());
 
+	   Message m=new Message(1,"hello world",new Date());
 		System.out.println(whatsappController.createMessage("hello"));
-		System.out.println(whatsappController.createMessage("hello"));
+		System.out.println(whatsappController.sendMessage(m,a,g));
 	}
 }

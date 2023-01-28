@@ -93,9 +93,13 @@ public class WhatsappRepository {
         if(!users.contains(sender))
             throw new Exception("You are not allowed to send message");
         List<Message>m=mg.get(group.getName());
+        if(m==null){
+            m=new ArrayList<>();
+
+        }
         m.add(message);
         mg.put(group.getName(),m);
-        return m.size()+1;
+        return m.size();
 
 
 
