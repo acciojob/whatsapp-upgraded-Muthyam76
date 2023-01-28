@@ -17,11 +17,13 @@ public class WhatsappRepository {
    //List<Group>groupList;
     HashMap<Integer, Message>messageList;
     HashMap<String,List<Message>>mg;
+    HashMap<String,List<Message>>mu;
     public WhatsappRepository(){
         userList=new HashMap<>();
         groupList=new HashMap<>();
         messageList=new HashMap<>();
         mg=new HashMap<>();
+        mu=new HashMap<>();
     }
 
     public String addUser(String name, String mobile) throws Exception {
@@ -87,7 +89,7 @@ public class WhatsappRepository {
     }
 
     public int sendMessage(Message message, User sender, Group group) throws Exception {
-        if(!groupList.containsKey(group.getName()))
+        if(groupList.containsKey(group.getName())==false)
             throw new Exception("Group does not exist");
         List<User>users=groupList.get(group.getName());
         if(!users.contains(sender))
@@ -99,6 +101,13 @@ public class WhatsappRepository {
         }
         m.add(message);
         mg.put(group.getName(),m);
+        List<Message>m1=mu.get(sender.getMobile());
+        if(m1==null)
+        {
+            m1=new ArrayList<>();
+        }
+        m1.add(message);
+        mu.put(sender.getMobile(),m1);
         return m.size();
 
 
