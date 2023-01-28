@@ -28,7 +28,7 @@ public class WhatsappService {
 
     }
 
-    public int sendMessage(Message message, User sender, Group group) {
+    public int sendMessage(Message message, User sender, Group group) throws Exception {
 
         return  whatsappRepository.sendMessage(message,sender,group);
     }
