@@ -16,10 +16,12 @@ public class WhatsappRepository {
     HashMap<String,List<User>>groupList;
    //List<Group>groupList;
     HashMap<Integer, Message>messageList;
+    HashMap<String,List<Message>>mg;
     public WhatsappRepository(){
         userList=new HashMap<>();
         groupList=new HashMap<>();
         messageList=new HashMap<>();
+        mg=new HashMap<>();
     }
 
     public String addUser(String name, String mobile) throws Exception {
@@ -82,5 +84,20 @@ public class WhatsappRepository {
 
         }
         return  0;
+    }
+
+    public int sendMessage(Message message, User sender, Group group) throws Exception {
+        if(!groupList.containsKey(group.getName()))
+            throw new Exception("Group does not exist");
+        List<User>users=groupList.get(group.getName());
+        if(!users.contains(sender))
+            throw new Exception("You are not allowed to send message");
+        List<Message>m=mg.get(group.getName());
+        m.add(message);
+        mg.put(group.getName(),m);
+        return m.size()+1;
+
+
+
     }
 }
