@@ -49,6 +49,7 @@ public class WhatsappRepository {
 
     public int createMessage(String content) {
         Message m=new Message(messageList.size(),content,new Date());
+        messageList.put(m.getId(),m);
         return m.getId();
     }
 }

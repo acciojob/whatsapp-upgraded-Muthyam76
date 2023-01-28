@@ -22,5 +22,9 @@ public class Application {
 
 		System.out.println(whatsappController.createUser("muthyam","123"));
 		System.out.println(whatsappController.createGroup(l).getName());
+		System.out.println(whatsappController.createGroup(l).getName());
+
+		System.out.println(whatsappController.createMessage("hello"));
+		System.out.println(whatsappController.createMessage("hello"));
 	}
 }
