@@ -13,6 +13,7 @@ public class WhatsappRepository {
     HashMap<String,Group>groupList;
     public WhatsappRepository(){
         userList=new HashMap<>();
+        groupList=new HashMap<>();
     }
 
     public String addUser(String name, String mobile) throws Exception {
@@ -34,7 +35,7 @@ public class WhatsappRepository {
 
         }
         else if(size>2){
-            int size1=groupList.size();
+            int size1=groupList.size()+1;
              group=new Group("Group "+size1,size);
             groupList.put(group.getName(),group);
 
