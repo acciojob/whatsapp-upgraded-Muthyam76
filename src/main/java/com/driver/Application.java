@@ -28,6 +28,7 @@ public class Application {
 
 	   Message m=new Message(1,"hello world",new Date());
 		System.out.println(whatsappController.createMessage("hello"));
-		System.out.println(whatsappController.sendMessage(m,d,g));
+		//System.out.println(whatsappController.sendMessage(m,d,g));
+		System.out.println(whatsappController.removeUser(b));
 	}
 }

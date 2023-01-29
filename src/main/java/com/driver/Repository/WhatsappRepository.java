@@ -45,8 +45,8 @@ public class WhatsappRepository {
 
         }
         else if(size>2){
-            int size1=groupList.size()+1;
-             group=new Group("Group "+size1,size);
+            int noOfGroups=groupList.size()+1;
+             group=new Group("Group "+noOfGroups,size);
             groupList.put(group.getName(),users);
 
         }
