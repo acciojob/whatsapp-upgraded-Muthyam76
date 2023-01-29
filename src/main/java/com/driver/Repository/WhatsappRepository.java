@@ -108,28 +108,23 @@ public class WhatsappRepository {
     }
 
     public int sendMessage(Message message, User sender, Group group) throws Exception {
-        if(group!=null) {
-            if (!groupList.containsKey(group.getName()))
-                throw new Exception("Group does not exist");
+       if(group==null || !groupList.containsKey(group.getName())){
+           throw new Exception("Group does not exist");
+       }
+       List<User>users=groupList.get(group.getName());
+       if(sender==null || !users.contains(sender))
+           throw new Exception("You are not allowed to send message");
+        List<Message>messages=mg.get(group.getName());
+        if(messages==null){
+           messages=new ArrayList<>();
+       }
+        if(message!=null) {
+            messages.add(message);
+            mg.put(group.getName(), messages);
         }
-        List<User>users=groupList.get(group.getName());
-        if(!users.contains(sender))
-            throw new Exception("You are not allowed to send message");
-        List<Message>m=mg.get(group.getName());
-        if(m==null){
-            m=new ArrayList<>();
 
-        }
-        m.add(message);
-        mg.put(group.getName(),m);
-        List<Message>m1=mu.get(sender.getMobile());
-        if(m1==null)
-        {
-            m1=new ArrayList<>();
-        }
-        m1.add(message);
-        mu.put(sender.getMobile(),m1);
-        return m.size();
+
+       return messages.size();
 
 
 
