@@ -108,7 +108,7 @@ public class WhatsappRepository {
     }
 
     public int sendMessage(Message message, User sender, Group group) throws Exception {
-       if(group==null ){
+       if(group==null || !groupList.containsKey(group.getName())){
            throw new Exception("Group does not exist");
        }
        List<User>users=groupList.get(group.getName());
