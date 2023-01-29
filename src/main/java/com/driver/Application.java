@@ -17,9 +17,11 @@ public class Application {
 		User a=new User("a","1");
 		User b=new User("b","2");
 		User c=new User("c","3");
+		User f=new User("f","4");
 		Group d=new Group();
 		l.add(a);
-		l.add(b);
+		//l.add(b);
+		l.add(f);
 		l.add(c);
 
 		System.out.println(whatsappController.createUser("muthyam","123"));
@@ -28,7 +30,7 @@ public class Application {
 
 	   Message m=new Message(1,"hello world",new Date());
 		System.out.println(whatsappController.createMessage("hello"));
-		System.out.println(whatsappController.sendMessage(m,c,d));
+		System.out.println(whatsappController.sendMessage(m,b,g));
 		//System.out.println(whatsappController.removeUser(b));
 	}
 }

@@ -14,13 +14,16 @@ import java.util.List;
 public class WhatsappRepository {
     HashMap<String, User> userList;
     HashMap<String,List<User>>groupList;
+    HashMap<String,List<User>>groupList1;
    //List<Group>groupList;
     HashMap<Integer, Message>messageList;
     HashMap<String,List<Message>>mg;
     HashMap<String,List<Message>>mu;
+
     public WhatsappRepository(){
         userList=new HashMap<>();
         groupList=new HashMap<>();
+        groupList1=new HashMap<>();
         messageList=new HashMap<>();
         mg=new HashMap<>();
         mu=new HashMap<>();
@@ -42,6 +45,7 @@ public class WhatsappRepository {
         if(size==2){
             User user=users.get(1);
            group=new Group(user.getName(),2);
+            groupList1.put(group.getName(),users);
 
         }
         else if(size>2){
@@ -108,10 +112,21 @@ public class WhatsappRepository {
     }
 
     public int sendMessage(Message message, User sender, Group group) throws Exception {
-       if(group==null || !groupList.containsKey(group.getName())){
+       if(group==null ){
            throw new Exception("Group does not exist");
        }
-       List<User>users=groupList.get(group.getName());
+        List<User>users=null;
+
+       if(groupList1.containsKey(group.getName()) || groupList.containsKey(group.getName())){
+           if(groupList1.containsKey(group.getName()))
+               users=groupList1.get(group.getName());
+           else
+               users=groupList.get(group.getName());
+       }
+       else{
+           throw new Exception("Group does not exist");
+       }
+       users=groupList.get(group.getName());
        if(sender==null || !users.contains(sender))
            throw new Exception("You are not allowed to send message");
         List<Message>messages=mg.get(group.getName());
