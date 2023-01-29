@@ -126,7 +126,6 @@ public class WhatsappRepository {
        else{
            throw new Exception("Group does not exist");
        }
-       users=groupList.get(group.getName());
        if(sender==null || !users.contains(sender))
            throw new Exception("You are not allowed to send message");
         List<Message>messages=mg.get(group.getName());
